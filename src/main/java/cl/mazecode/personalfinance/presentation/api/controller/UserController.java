@@ -1,5 +1,7 @@
 package cl.mazecode.personalfinance.presentation.api.controller;
 
+import cl.mazecode.personalfinance.core.domain.exception.NotDeletedException;
+import cl.mazecode.personalfinance.core.domain.exception.NotFoundException;
 import cl.mazecode.personalfinance.core.domain.model.User;
 import cl.mazecode.personalfinance.core.domain.service.user.UserService;
 import lombok.AllArgsConstructor;
@@ -31,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/users/{id}")
-    public ResponseEntity<User> find(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<User> find(@PathVariable(name = "id") Long id) throws NotFoundException {
         Optional<User> userOptional = this.userService.find(id);
 
         User user = userOptional.orElseThrow();
@@ -40,7 +42,7 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/users/{id}")
-    public ResponseEntity<Map<String, Boolean>> remove(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<Map<String, Boolean>> remove(@PathVariable(name = "id") Long id) throws NotDeletedException, NotFoundException {
         boolean deleted = false;
 
         deleted = this.userService.delete(id);
