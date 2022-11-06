@@ -1,0 +1,34 @@
+logging:
+  level:
+    org.springframework: ERROR
+    cl.mazecode: DEBUG
+
+spring:
+  application:
+    name: personal-finance
+  config:
+    activate:
+      on-profile:
+        - default
+  main:
+    banner-mode: "off"
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      platform: h2
+  datasource:
+    url: jdbc:h2:file:f:/Work/Workspace/PersonalFinance/database/personal-finance
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+
+project:
+  email: diego.feliud@gmail.com
