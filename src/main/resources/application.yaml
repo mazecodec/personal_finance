@@ -1,9 +1,14 @@
-logging:
-  level:
-    org.springframework: ERROR
-    cl.mazecode: DEBUG
+project:
+  author: Mazecode
+  email: diego.feliud@gmail.com
 
 spring:
+  mvc:
+    servlet:
+      path: /api
+  data:
+    rest:
+      base-path: /api
   application:
     name: personal-finance
   config:
@@ -30,5 +35,29 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
 
-project:
-  email: diego.feliud@gmail.com
+logging:
+  level:
+    org:
+      hibernate:
+        type: TRACE
+        SQL: DEBUG
+      springframework:
+        web: ERROR
+    cl:
+      mazecode: DEBUG
+    web: DEBUG
+    sql: DEBUG
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health,info
+      base-path: /api/actuator/
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+      show-details: always

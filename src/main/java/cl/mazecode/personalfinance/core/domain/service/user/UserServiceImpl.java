@@ -5,7 +5,8 @@ import cl.mazecode.personalfinance.core.domain.exception.NotDeletedException;
 import cl.mazecode.personalfinance.core.domain.exception.NotFoundException;
 import cl.mazecode.personalfinance.core.domain.model.User;
 import cl.mazecode.personalfinance.core.domain.repository.UserRepository;
-import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    @NonNull
     private final UserRepository repository;
 
     @Override
@@ -38,7 +40,7 @@ public class UserServiceImpl implements UserService {
         return all.stream()
                   .map(userEntity -> {
                       User user = new User();
-                      BeanUtils.copyProperties(user, userEntity);
+                      BeanUtils.copyProperties(userEntity, user);
 
                       return user;
                   })
