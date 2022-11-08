@@ -13,9 +13,19 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>PersonalFinance</name>
     <description>PersonalFinance</description>
+
+    <developers>
+        <developer>
+            <name>Mazecode</name>
+            <email>diego.feliud@gmail.com</email>
+            <url>https://bitbucket.org/dfeliu/personalfinance_backend</url>
+        </developer>
+    </developers>
+
     <properties>
         <java.version>11</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
