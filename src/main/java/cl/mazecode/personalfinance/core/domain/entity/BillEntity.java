@@ -23,8 +23,7 @@ public class BillEntity {
     @NotNull
     private String description;
     @Column(precision = 2)
-    @Builder.Default
-    private Float total = 0F;
+    private Float total;
     @Column(nullable = false)
     @NotNull
     private Instant createAt;

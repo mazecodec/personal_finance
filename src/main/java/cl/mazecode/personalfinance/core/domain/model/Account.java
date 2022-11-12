@@ -1,6 +1,5 @@
 package cl.mazecode.personalfinance.core.domain.model;
 
-import cl.mazecode.personalfinance.core.domain.entity.BillEntity;
 import lombok.*;
 
 import javax.persistence.Id;
@@ -28,5 +27,5 @@ public class Account implements ModelI {
     private Date updatedAt;
     private Date deletedAt;
     @Builder.Default
-    private Set<BillEntity> bills = new HashSet<>();
+    private Set<Bill> bills = new HashSet<>();
 }

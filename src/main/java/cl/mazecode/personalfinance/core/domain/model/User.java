@@ -42,11 +42,11 @@ public class User implements ModelI {
     @Transient
     @NotEmpty(message = "Password confirmation is required.")
     private String passwordConfirmation;
-    private AccountEntity account;
     @NonNull
     @NotNull
     @Builder.Default
     private Instant createAt = Instant.now();
     private Date updatedAt;
     private Date deletedAt;
+    private AccountEntity account;
 }

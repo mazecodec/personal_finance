@@ -26,7 +26,7 @@ public class AccountEntity {
     private Date updatedAt;
     @Column
     private Date deletedAt;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @NotNull
     private UserEntity userAccount;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
