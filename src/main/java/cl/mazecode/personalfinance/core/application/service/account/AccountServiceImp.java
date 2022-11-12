@@ -19,7 +19,7 @@ public class AccountServiceImp implements AccountService {
     private AccountRepository repository;
 
     @Override
-    public Account create(Account account) {
+    public Account save(Account account) {
         AccountEntity accountEntity = new AccountEntity();
         UserEntity userEntity = new UserEntity();
 

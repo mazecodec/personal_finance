@@ -18,18 +18,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class AccountServiceTest {
     @Autowired
     private AccountService accountService;
-
     @Autowired
     private UserService userService;
 
-//    @Test
-//    void givenPrePopulateData_All_ShouldReturnAUserList() throws NotFoundException {
-//        Long id = 1L;
-//
-//        assertThat(this.accountService.find(id)
-//                                      .orElseThrow()
-//                                      .getId()).isGreaterThanOrEqualTo(id);
-//    }
 
     @Test
     void givenANewAccount_Save_ShouldReturnANewAccount() throws EmailExistsException, NotFoundException {
@@ -40,21 +31,21 @@ public class AccountServiceTest {
                            .email("test@email.com")
                            .build();
 
-        User userFromDB = this.userService.save(newUser);
+        this.userService.save(newUser);
 
-        Long newAccountId = 1L;
+        final Long accountId = 1L;
         Account newAccount = Account.builder()
-                                    .id(newAccountId)
+                                    .id(accountId)
                                     .userAccount(newUser)
                                     .build();
 
-        this.accountService.create(newAccount);
+        this.accountService.save(newAccount);
 
-        Account accountFromDB = this.accountService.find(newAccountId)
+        Account accountFromDB = this.accountService.find(accountId)
                                                    .orElseThrow();
 
         assertThat(accountFromDB).isNotNull();
         assertThat(newAccount).isEqualTo(accountFromDB);
-        assertThat(accountFromDB.getId()).isGreaterThanOrEqualTo(newAccountId);
+        assertThat(accountFromDB.getId()).isGreaterThanOrEqualTo(accountId);
     }
 }

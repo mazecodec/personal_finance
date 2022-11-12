@@ -7,7 +7,7 @@ import cl.mazecode.personalfinance.core.domain.model.Account;
 import java.util.Optional;
 
 public interface AccountService {
-    Account create(Account account);
+    Account save(Account account);
 
     Optional<Account> find(Long id) throws NotFoundException;
 
