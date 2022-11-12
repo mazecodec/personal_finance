@@ -8,6 +8,7 @@ class PersonalFinanceApplicationTests {
 
     @Test
     void contextLoads() {
+        // No implement needed as we are simply loading context
     }
 
 }
