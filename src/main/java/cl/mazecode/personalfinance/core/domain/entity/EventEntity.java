@@ -10,8 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "events")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class EventEntity {
     @Id
@@ -30,7 +30,6 @@ public class EventEntity {
     private LocalDateTime updatedAt;
     @Column
     private LocalDateTime deletedAt;
-
     @ManyToMany
     private Set<UserEntity> attendees;
 }

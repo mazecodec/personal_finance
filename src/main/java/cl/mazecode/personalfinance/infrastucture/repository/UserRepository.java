@@ -1,4 +1,4 @@
-package cl.mazecode.personalfinance.core.domain.repository;
+package cl.mazecode.personalfinance.infrastucture.repository;
 
 import cl.mazecode.personalfinance.core.domain.entity.UserEntity;
 import cl.mazecode.personalfinance.core.domain.model.User;

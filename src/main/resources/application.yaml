@@ -3,16 +3,11 @@ project:
   email: diego.feliud@gmail.com
 
 # server configuration
-server:
-  port: 9003
-  tomcat:
-    accesslog:
-      enabled: true
-    basedir: target/tomcat
-  session:
-    timeout: 60
 
 spring:
+  output:
+    ansi:
+      enabled: ALWAYS
   mvc:
     servlet:
       path: /api
@@ -55,9 +50,6 @@ spring:
     username: prueba.envio.registro@gmail.com
     password: -----
     protocol: smtps
-
-support:
-  email: prueba.envio.registro@gmail.com
 
 logging:
   level:

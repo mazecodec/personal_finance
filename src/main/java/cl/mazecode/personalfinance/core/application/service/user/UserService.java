@@ -1,8 +1,8 @@
-package cl.mazecode.personalfinance.core.domain.service.user;
+package cl.mazecode.personalfinance.core.application.service.user;
 
-import cl.mazecode.personalfinance.core.domain.exception.EmailExistsException;
-import cl.mazecode.personalfinance.core.domain.exception.NotDeletedException;
-import cl.mazecode.personalfinance.core.domain.exception.NotFoundException;
+import cl.mazecode.personalfinance.core.application.exception.EmailExistsException;
+import cl.mazecode.personalfinance.core.application.exception.NotDeletedException;
+import cl.mazecode.personalfinance.core.application.exception.NotFoundException;
 import cl.mazecode.personalfinance.core.domain.model.User;
 
 import java.util.List;

@@ -1,8 +1,8 @@
 package cl.mazecode.personalfinance.core.domain.service;
 
-import cl.mazecode.personalfinance.core.domain.exception.EmailExistsException;
+import cl.mazecode.personalfinance.core.application.exception.EmailExistsException;
+import cl.mazecode.personalfinance.core.application.service.user.UserService;
 import cl.mazecode.personalfinance.core.domain.model.User;
-import cl.mazecode.personalfinance.core.domain.service.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

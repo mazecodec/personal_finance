@@ -1,4 +1,4 @@
-package cl.mazecode.personalfinance.core.domain.exception;
+package cl.mazecode.personalfinance.core.application.exception;
 
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;

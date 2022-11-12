@@ -1,14 +1,13 @@
 package cl.mazecode.personalfinance.presentation.api.controller;
 
-import cl.mazecode.personalfinance.core.domain.exception.EmailExistsException;
-import cl.mazecode.personalfinance.core.domain.exception.NotDeletedException;
-import cl.mazecode.personalfinance.core.domain.exception.NotFoundException;
+import cl.mazecode.personalfinance.core.application.exception.EmailExistsException;
+import cl.mazecode.personalfinance.core.application.exception.NotDeletedException;
+import cl.mazecode.personalfinance.core.application.exception.NotFoundException;
+import cl.mazecode.personalfinance.core.application.service.user.UserService;
 import cl.mazecode.personalfinance.core.domain.model.User;
-import cl.mazecode.personalfinance.core.domain.service.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,7 +26,6 @@ public class UserController {
     @Autowired
     private final UserService userService;
 
-    @Secured("ROLE_ANONYMOUS")
     @GetMapping(path = "")
     public ResponseEntity<List<User>> all() {
         return ResponseEntity.ok(this.userService.all());
