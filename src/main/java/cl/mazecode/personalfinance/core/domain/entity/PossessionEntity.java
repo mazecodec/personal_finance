@@ -1,14 +1,13 @@
 package cl.mazecode.personalfinance.core.domain.entity;
 
-import cl.mazecode.personalfinance.core.application.validation.ValidPassword;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "users")
-
+@Table(name = "possessions")
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -16,13 +15,13 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @ToString
 @Builder
-public class UserEntity {
+public class PossessionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 200, unique = true)
-    @NonNull
     @Length(max = 200)
+    @NonNull
     private String email;
     @Column(length = 100)
     @Length(max = 100)
@@ -32,7 +31,8 @@ public class UserEntity {
     @Length(max = 100)
     @NonNull
     private String lastName;
-    @Column
-    @ValidPassword
-    private String password;
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    @NotNull
+    private UserEntity owner;
 }

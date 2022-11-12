@@ -1,5 +1,6 @@
 package cl.mazecode.personalfinance.core.domain.service;
 
+import cl.mazecode.personalfinance.core.domain.exception.EmailExistsException;
 import cl.mazecode.personalfinance.core.domain.model.User;
 import cl.mazecode.personalfinance.core.domain.service.user.UserService;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void givenANewUser_Save_ShouldReturnANewUser() {
+    void givenANewUser_Save_ShouldReturnANewUser() throws EmailExistsException {
         User newUser = User.builder()
                            .id(1L)
                            .name("Test")

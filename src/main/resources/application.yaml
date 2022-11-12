@@ -2,6 +2,16 @@ project:
   author: Mazecode
   email: diego.feliud@gmail.com
 
+# server configuration
+server:
+  port: 9003
+  tomcat:
+    accesslog:
+      enabled: true
+    basedir: target/tomcat
+  session:
+    timeout: 60
+
 spring:
   mvc:
     servlet:
@@ -34,6 +44,20 @@ spring:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: prueba.envio.registro@gmail.com
+    password: -----
+    protocol: smtps
+
+support:
+  email: prueba.envio.registro@gmail.com
 
 logging:
   level:
