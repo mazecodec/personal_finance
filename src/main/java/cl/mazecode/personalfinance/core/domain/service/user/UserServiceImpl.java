@@ -5,7 +5,7 @@ import cl.mazecode.personalfinance.core.domain.exception.EmailExistsException;
 import cl.mazecode.personalfinance.core.domain.exception.NotDeletedException;
 import cl.mazecode.personalfinance.core.domain.exception.NotFoundException;
 import cl.mazecode.personalfinance.core.domain.model.User;
-import cl.mazecode.personalfinance.core.domain.repository.UserRepository;
+import cl.mazecode.personalfinance.infrastucture.repository.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;

@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,7 +28,8 @@ public class UserController {
     @Autowired
     private final UserService userService;
 
-    @Secured("ROLE_ANONYMOUS")
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @GetMapping(path = "")
     public ResponseEntity<List<User>> all() {
         return ResponseEntity.ok(this.userService.all());
@@ -44,6 +46,7 @@ public class UserController {
                              .body(newUser);
     }
 
+    @Secured("ROLE_ANONYMOUS")
     @GetMapping(path = "/{id}")
     public ResponseEntity<User> find(@PathVariable(name = "id") Long id) throws NotFoundException {
         Optional<User> userOptional = this.userService.find(id);
