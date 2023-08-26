@@ -5,21 +5,17 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.net.URI;
-import java.time.Instant;
-import java.util.Date;
 
 @Entity
 @Table(name = "bill_items")
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @Builder
-public class BillItemEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class BillItemEntity extends EntityBase implements Serializable {
     @Column(nullable = false, length = 200)
     @NotNull
     private String description;
@@ -36,14 +32,7 @@ public class BillItemEntity {
     private boolean isPayInParts;
     @Column
     private URI uri;
-    @Column(nullable = false)
-    @NotNull
-    private Instant createAt;
-    @Column
-    private Date updatedAt;
-    @Column
-    private Date deletedAt;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @NotNull
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "bills_id")
     private BillEntity bill;
 }

@@ -1,6 +1,7 @@
 package cl.mazecode.personalfinance.core.domain.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -18,6 +19,10 @@ import java.util.Set;
 public class Account implements ModelI {
     @Id
     private Long id;
+    @NonNull
+    @NotNull
+    @Length(max = 100)
+    private String description;
     @NonNull
     @NotNull
     private User userAccount;

@@ -2,7 +2,6 @@ package cl.mazecode.personalfinance.core.domain.model;
 
 import cl.mazecode.personalfinance.core.application.validation.PasswordMatches;
 import cl.mazecode.personalfinance.core.application.validation.ValidPassword;
-import cl.mazecode.personalfinance.core.domain.entity.AccountEntity;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -48,5 +47,4 @@ public class User implements ModelI {
     private Instant createAt = Instant.now();
     private Date updatedAt;
     private Date deletedAt;
-    private AccountEntity account;
 }

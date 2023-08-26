@@ -1,4 +1,4 @@
-package cl.mazecode.personalfinance.core.domain.service;
+package cl.mazecode.personalfinance.core.application.service;
 
 import cl.mazecode.personalfinance.core.application.exception.EmailExistsException;
 import cl.mazecode.personalfinance.core.application.service.user.UserService;

@@ -4,8 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
-import java.util.Date;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,22 +13,21 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @Builder
-public class AccountEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(nullable = false)
+public class AccountEntity extends EntityBase implements Serializable {
+    @Column(nullable = false, length = 100)
     @NotNull
-    private Instant createAt;
-    @Column
-    private Date updatedAt;
-    @Column
-    private Date deletedAt;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @NotNull
+    private String description;
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "users_id", referencedColumnName = "id")
     private UserEntity userAccount;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<BillEntity> bills;
+    @OneToMany(
+            targetEntity = BillEntity.class,
+            mappedBy = "account",
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            orphanRemoval = true
+    )
+    private Set<BillEntity> bills = new HashSet<>();
 }

@@ -2,34 +2,32 @@ package cl.mazecode.personalfinance.core.domain.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Set;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "events")
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
+@NoArgsConstructor
 @Builder
-public class EventEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class EventEntity extends EntityBase implements Serializable {
     @Column(length = 100, nullable = false)
+    @NotNull
     @NonNull
     private String title;
     @Column(length = 250)
     private String description;
     @Column
     private Instant date;
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-    @Column
-    private LocalDateTime updatedAt;
-    @Column
-    private LocalDateTime deletedAt;
     @ManyToMany
     private Set<UserEntity> attendees;
 }

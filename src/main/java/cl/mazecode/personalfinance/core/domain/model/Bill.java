@@ -26,6 +26,10 @@ public class Bill implements ModelI {
     @NotNull
     @Builder.Default
     private Float total = 0F;
+    @Builder.Default
+    private boolean isDone = false;
+    @Builder.Default
+    private boolean isArchived = false;
     @NonNull
     @NotNull
     @Builder.Default

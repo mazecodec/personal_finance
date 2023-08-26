@@ -2,28 +2,25 @@ package cl.mazecode.personalfinance.core.domain.entity;
 
 import cl.mazecode.personalfinance.core.application.validation.ValidPassword;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
-import java.util.Date;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @ToString
 @Builder
-public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(length = 200, unique = true)
-    @NotNull
-    @Length(max = 200)
+public class UserEntity extends EntityBase implements Serializable {
+    @Column(length = 100, unique = true)
+    @Length(max = 100)
     private String email;
     @Column(length = 100)
     @Length(max = 100)
@@ -36,14 +33,7 @@ public class UserEntity {
     @Column
     @ValidPassword
     private String password;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "userAccount", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private AccountEntity account;
-    @Column
-    @NotNull
-    @Builder.Default
-    private Instant createAt = Instant.now();
-    @Column
-    private Date updatedAt;
-    @Column
-    private Date deletedAt;
 }

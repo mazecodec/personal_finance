@@ -6,6 +6,7 @@ import cl.mazecode.personalfinance.core.application.exception.NotFoundException;
 import cl.mazecode.personalfinance.core.application.service.user.UserService;
 import cl.mazecode.personalfinance.core.domain.model.User;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,17 +22,23 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/v1/users")
 @AllArgsConstructor
+//@Api("Users API EntryPoint")
+@Log4j2
 public class UserController {
 
     @Autowired
     private final UserService userService;
 
     @GetMapping(path = "")
+    //    @ApiOperation(value = "List all users")
     public ResponseEntity<List<User>> all() {
         return ResponseEntity.ok(this.userService.all());
     }
 
+
     @PostMapping(path = "")
+//    @ApiOperation(value = "Add new user")
+//    @ApiModelProperty(hidden = true)
     public ResponseEntity<User> save(@RequestBody User user, UriComponentsBuilder b) throws URISyntaxException, EmailExistsException {
         User newUser = this.userService.save(user);
 
@@ -43,6 +50,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/{id}")
+//    @ApiOperation(value = "Find any user by ID")
     public ResponseEntity<User> find(@PathVariable(name = "id") Long id) throws NotFoundException {
         Optional<User> userOptional = this.userService.find(id);
 
@@ -52,6 +60,7 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/{id}")
+//    @ApiOperation(value = "Remove a user by ID")
     public ResponseEntity<Map<String, Boolean>> remove(@PathVariable(name = "id") Long id) throws NotDeletedException, NotFoundException {
         boolean deleted = false;
 

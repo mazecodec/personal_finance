@@ -1,4 +1,4 @@
-package cl.mazecode.personalfinance.core.domain.service;
+package cl.mazecode.personalfinance.core.application.service;
 
 import cl.mazecode.personalfinance.core.application.exception.EmailExistsException;
 import cl.mazecode.personalfinance.core.application.exception.NotFoundException;
@@ -23,7 +23,7 @@ public class AccountServiceTest {
 
 
     @Test
-    void givenANewAccount_Save_ShouldReturnANewAccount() throws EmailExistsException, NotFoundException {
+    public void givenANewAccount_Save_ShouldReturnANewAccount() throws EmailExistsException, NotFoundException {
         User newUser = User.builder()
                            .id(1L)
                            .name("Test")
